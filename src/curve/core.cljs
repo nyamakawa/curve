@@ -28,7 +28,7 @@
 
 (defn draw-pixel [image data x y r g b & a]
   (println "draw-pixel" x y r g b (first a))
-  (let [offset (+ (* x 4) (* y (.-height image) 4))]
+  (let [offset (+ (* x 4) (* y (.-width image) 4))]
     (aset data offset r)
     (aset data (+ offset 1) g)
     (aset data (+ offset 2) b)
@@ -72,7 +72,7 @@
         (draw-pixel-color image data y x color)
         (draw-pixel-color image data x y color))
       (let [error (- error dy)]
-        (println "error" error)
+        ;(println "error" error)
         (if (< error 0)
           (recur image data x1 y1 x2 y2 dx dy (+ error dx) (+ x 1) (+ y ystep) ystep color steep)
               (recur image data x1 y1 x2 y2 dx dy error (+ x 1) y ystep color steep))))))
@@ -97,7 +97,8 @@
         image (.createImageData ctx canvas-width canvas-height)
         data (.-data image)]
     ;(draw-pixel image data 0 0 0 0 0) ;test
-    ;(draw-pixel-color image data 20 20 [255 0 0]) ;test
+    ;(run! (fn [x] (draw-pixel-color image data 0 x [255 0 0])) (range 30 600 1))
+    ;(draw-pixel-color image data 200 200 [255 0 0]) ;test
     (draw-line image data 30 30 200 200 [0 0 0])
     (.putImageData ctx image 0 0)))
   
