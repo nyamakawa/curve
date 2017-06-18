@@ -67,13 +67,15 @@
 (defn draw-line-inner [image data x1 y1 x2 y2 dx dy error x y ystep color steep]
   (println "draw-line-inner" x1 y1 x2 y2 dx dy error x y ystep color steep)
   (if (<= x x2)
-    (if steep
-      (draw-pixel-color image data y x color)
-      (draw-pixel-color image data x y color))
-    (let [error (- error dy)]
-      (if (< error 0)
-        (recur image data x1 y1 x2 y2 dx dy (+ error dx) x (+ y ystep) ystep color steep)
-        (recur image data x1 y1 x2 y2 dx dy error (+ x 1) y ystep color steep)))))
+    (do 
+      (if steep
+        (draw-pixel-color image data y x color)
+        (draw-pixel-color image data x y color))
+      (let [error (- error dy)]
+        (println "error" error)
+        (if (< error 0)
+          (recur image data x1 y1 x2 y2 dx dy (+ error dx) (+ x 1) (+ y ystep) ystep color steep)
+              (recur image data x1 y1 x2 y2 dx dy error (+ x 1) y ystep color steep))))))
 
 (defn draw-line [image data x1 y1 x2 y2 color]
   (let [steep (> (math/abs (- y2 y1)) (math/abs (- x2 x1)))]
