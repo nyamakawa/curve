@@ -4,7 +4,7 @@
 (defn bezier [t x1 x2 x3 x4]
   (+ (* (math/power (- 1 t) 3) x1)
      (* 3 (math/power (- 1 t) 2) t x2)
-     (* 6 (- 1 t) (math/power t 2) x3)
+     (* 3 (- 1 t) (math/power t 2) x3)
      (* (math/power t 3 ) x4)))
 
 (defn close-enough? [x1 y1 x y]
