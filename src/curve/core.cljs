@@ -45,13 +45,14 @@
 
     (let [draw-curve
           (fn [x1 y1 x2 y2 x3 y3 x4 y4]            
+            (draw/draw-line image data x1 y1 x3 y3 [0 255 128])
+            (draw/draw-line image data x2 y2 x4 y4 [0 255 128])
             (bezier/draw-curve
              x1 y1 x2 y2 x3 y3 x4 y4
              (fn [x1 y1 x2 y2]
-               (draw/draw-line image data x1 y1 x2 y2 [0 0 255])))
-            (draw/draw-line image data x1 y1 x3 y3 [0 255 128])
-            (draw/draw-line image data x2 y2 x4 y4 [0 255 128]))]
-      (draw-curve 50 400 600 400 50 300 600 300)
+               (draw/draw-line image data x1 y1 x2 y2 [0 0 255]))))]
+      ;;(draw-curve 50 400 600 400 50 300 600 300)
+      (draw-curve 100 500 300 300 100 400 200 300)
       (draw-curve 400 200 600 200 400 100 600 100))
     
     (.putImageData ctx image 0 0)))
