@@ -90,6 +90,15 @@
             (draw-line-inner image data x1 y1 x2 y2 dx dy error x1 y1 1 color steep)
             (draw-line-inner image data x1 y1 x2 y2 dx dy error x1 y1 -1 color steep)))))))
 
+(defn draw-curve [sx sy ex ey c1x c1y c2x c2y c3x c3y c4x c4y]
+  )
+
+(defn bezier [t s e x1 x2 x3 x4]
+  (+ (* (math/power (- 1 t) 3) s)
+     (* 3 (math/power (- 1 t) 2) t x1)
+     (* 6 (- 1 t) (math/power t 2) x2)
+     (* (math/power t 3 ) x3)))
+
 (defn draw [canvas]
   (let [ctx (.getContext canvas "2d")
         canvas-width (.-width canvas)
@@ -100,6 +109,9 @@
     ;(run! (fn [x] (draw-pixel-color image data 0 x [255 0 0])) (range 30 600 1))
     ;(draw-pixel-color image data 200 200 [255 0 0]) ;test
     (draw-line image data 30 30 200 200 [0 0 0])
+    (draw-line image data 30 100 200 200 [255 0 0])
+    (draw-line image data 30 150 200 200 [255 0 0])
+    (draw-line image data 30 200 200 200 [255 0 0])
     (.putImageData ctx image 0 0)))
   
 (draw (init))

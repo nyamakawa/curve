@@ -10,13 +10,6 @@
                  [org.clojure/clojurescript "1.9.229"]
                  [org.clojure/core.async  "0.3.442"
                   :exclusions [org.clojure/tools.reader]]
-                 [cljsjs/react "15.2.1-1"]
-                 [cljsjs/react-dom "15.2.1-1"]
-                 [sablono "0.7.4"]
-                 [rm-hull/monet "0.3.0"]
-                 [prismatic/dommy "1.1.0"]
-                 [racehub/om-bootstrap "0.6.1"]
-                 [org.omcljs/om "0.8.8"]
                  [lein-doo "0.1.7"]]
 
   :plugins [[lein-figwheel "0.5.10"]

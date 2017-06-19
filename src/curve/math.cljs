@@ -2,4 +2,7 @@
   (:require ))
 
 (defn abs [n]
-   (.abs js/Math -1.2))
+   (.abs js/Math n))
+
+(defn power [x n]
+   (.pow js/Math x n))
