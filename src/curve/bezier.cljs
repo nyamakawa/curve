@@ -1,11 +1,27 @@
 (ns curve.bezier
   (:require [curve.math :as math]))
 
+(defn split-line [t x1 x2]
+  (+ x1 (*  (- x2 x1) t)))
+
+(defn de-casteljau [t a1 a2 a3 a4]
+  (let [b1 (split-line t a1 a2)
+        b2 (split-line t a2 a3)
+        b3 (split-line t a3 a4)
+        c1 (split-line t b1 b2)
+        c2 (split-line t b2 b3)
+        d1 (split-line t c1 c2)]
+    (array b1 b2 b3 c1 c2 d1)))
+
 (defn bezier [t x1 x2 x3 x4]
-  (+ (* (math/power (- 1 t) 3) x1)
-     (* 3 (math/power (- 1 t) 2) t x2)
-     (* 3 (- 1 t) (math/power t 2) x3)
-     (* (math/power t 3 ) x4)))
+  (aget (de-casteljau t x1 x2 x3 x4) 5))
+
+(defn bezier-f [t x1 x2 x3 x4]
+  (let [t2 (- 1 t)] 
+   (+ (* (math/power t2 3) x1)
+      (* 3 (math/power t2 2) t x2)
+      (* 3 (- 1 t) t2 x3)
+      (* (math/power t 3 ) x4))))
 
 (defn close-enough? [x1 y1 x y]
   (println "d " (+ (math/power (- x x1) 2)

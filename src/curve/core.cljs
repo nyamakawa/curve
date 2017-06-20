@@ -63,3 +63,29 @@
     (.putImageData ctx image 0 0)))
   
 (draw (init))
+
+
+(defn bench [name f]
+  (.time js/console name)
+  (f)
+  (.timeEnd js/console name))
+  
+(bench "new"
+       (fn []
+         (dotimes [n 1000]
+           (bezier/bezier 0.5 1.0 2.0 3.0 4.0))))
+
+(bench "old"
+       (fn []
+         (dotimes [n 1000]
+           (bezier/bezier-f 0.5 1.0 2.0 3.0 4.0))))
+
+(bench "new"
+       (fn []
+         (dotimes [n 10000]
+           (bezier/bezier 0.5 1.0 2.0 3.0 4.0))))
+
+(bench "old"
+       (fn []
+         (dotimes [n 10000]
+           (bezier/bezier-f 0.5 1.0 2.0 3.0 4.0))))
