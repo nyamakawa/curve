@@ -42,4 +42,4 @@
       (recur (+ t step) step x y sx sy ex ey c1x c1y c2x c2y draw-line))))
 
 (defn draw-curve [sx sy ex ey c1x c1y c2x c2y draw-line]
-  (draw-curve-inner 0 0.001 sx sy sx sy ex ey c1x c1y c2x c2y draw-line))
+  (draw-curve-inner 0 0.01 sx sy sx sy ex ey c1x c1y c2x c2y draw-line))

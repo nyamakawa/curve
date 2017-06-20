@@ -53,8 +53,13 @@
                (draw/draw-line image data x1 y1 x2 y2 [0 0 255]))))]
       ;;(draw-curve 50 400 600 400 50 300 600 300)
       (draw-curve 100 500 300 300 100 400 200 300)
+
+      (draw-curve 500 500 600 400 500 450 550 400)
+
       (draw-curve 400 200 600 200 400 100 600 100))
-    
+
+    (draw/draw-line image data 300 200 400 100 [255 0 0])
+
     (.putImageData ctx image 0 0)))
   
 (draw (init))
