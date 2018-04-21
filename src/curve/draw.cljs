@@ -65,6 +65,8 @@
         (draw-line-inner image data x0 y0 x1 y1 dx dy error x0 y0 -1 color steep)))))
 
 (defn draw-line [image data x0 y0 x1 y1 color]
+  (draw-pixel-color image data x0 y0 color)
+  (draw-pixel-color image data x1 y1 color)
   (let [steep (> (math/abs (- y1 y0)) (math/abs (- x1 x0)))]
     (if steep
       (draw-line-steep image data y0 x0 y1 x1 color steep)
